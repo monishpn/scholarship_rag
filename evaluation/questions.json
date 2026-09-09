@@ -1,0 +1,22 @@
+[
+  {"id":"Q01","question":"Which email account receives scholarship correspondence?","answerable":true,"sections":["3"]},
+  {"id":"Q02","question":"How often should students check their RMIT email for scholarship messages?","answerable":true,"sections":["3"]},
+  {"id":"Q03","question":"How many credit points count as full-time higher education enrolment per semester?","answerable":true,"sections":["2.3"]},
+  {"id":"Q04","question":"What is the standard 100 percent full-time credit load per semester?","answerable":true,"sections":["2.3"]},
+  {"id":"Q05","question":"Must I tell the Scholarships Office if I change to part-time study?","answerable":true,"sections":["4.2.1"]},
+  {"id":"Q06","question":"Is a scholarship paid during part-time study generally taxable income?","answerable":true,"sections":["5.3"]},
+  {"id":"Q07","question":"What happens if I do not undertake my WIL placement after receiving the WIL Grant?","answerable":true,"sections":["8.131"]},
+  {"id":"Q08","question":"Does a UniLodge at RMIT Bundoora recipient need to sign a residential tenancy agreement?","answerable":true,"sections":["8.128"]},
+  {"id":"Q09","question":"What GPA must a Westpac Young Technologists Scholarship recipient maintain?","answerable":true,"sections":["8.130"]},
+  {"id":"Q10","question":"Can a Women in STEM Undergrad Scholarship recipient defer study?","answerable":true,"sections":["8.132"]},
+  {"id":"Q11","question":"Does a Yugo Accommodation Support Scholarship recipient pay a bond?","answerable":true,"sections":["8.133"]},
+  {"id":"Q12","question":"Can a Steve Ashton Scholarship recipient take leave of absence?","answerable":true,"sections":["8.123"]},
+  {"id":"Q13","question":"Can a Susan E Williams Scholarship recipient study part-time without approved circumstances?","answerable":true,"sections":["8.124"]},
+  {"id":"Q14","question":"Can an Uncle Brian McKinnon Scholarship recipient defer study?","answerable":true,"sections":["8.127"]},
+  {"id":"Q15","question":"What are the Coursework Scholarships Office contact details?","answerable":true,"sections":["3"]},
+  {"id":"Q16","question":"What meals are served at the scholarship awards ceremony?","answerable":false,"sections":[]},
+  {"id":"Q17","question":"What is the weather forecast for Melbourne tomorrow?","answerable":false,"sections":[]},
+  {"id":"Q18","question":"Which laptop model should scholarship recipients purchase?","answerable":false,"sections":[]},
+  {"id":"Q19","question":"What is the vice-chancellor's home address?","answerable":false,"sections":[]},
+  {"id":"Q20","question":"How many parking spaces are available at RMIT?","answerable":false,"sections":[]}
+]
