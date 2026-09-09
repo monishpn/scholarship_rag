@@ -84,10 +84,21 @@ Ollama runs the language model that produces natural chatbot answers. Download i
 
 ### macOS
 
-1. Download Ollama for macOS.
-2. Open the downloaded file and install Ollama.
-3. Open the Ollama application.
-4. Open a new Terminal window and verify the installation:
+You can install Ollama from Terminal with Homebrew:
+
+```bash
+brew install ollama
+```
+
+Start it as a background service:
+
+```bash
+brew services start ollama
+```
+
+If Homebrew is not installed, use the installer from the Ollama download page instead: download Ollama for macOS, open the downloaded file, install it, and open the Ollama application.
+
+Verify the installation:
 
 ```bash
 ollama --version
@@ -95,10 +106,21 @@ ollama --version
 
 ### Windows
 
-1. Download Ollama for Windows.
-2. Open the installer and complete the installation.
-3. Start Ollama if it is not already running.
-4. Open a new PowerShell window and verify the installation:
+You can install Ollama directly from PowerShell with Ollama's official installation script:
+
+```powershell
+irm https://ollama.com/install.ps1 | iex
+```
+
+Alternatively, use Windows Package Manager:
+
+```powershell
+winget install --id Ollama.Ollama -e
+```
+
+If neither terminal method is available, download Ollama for Windows from the Ollama download page and run the installer.
+
+After installation, start Ollama if it is not already running. Open a new PowerShell window and verify it:
 
 ```powershell
 ollama --version
