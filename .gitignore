@@ -3,6 +3,12 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# Docker/Makefile not currently used - kept locally, not tracked
+Dockerfile
+docker-compose.yml
+.dockerignore
+Makefile
+
 # Generated at runtime, regenerate with: python app.py --reindex
 data/index/
 
