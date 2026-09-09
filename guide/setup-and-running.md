@@ -80,23 +80,17 @@ This installs `pypdf`, which the application uses to read the scholarship PDF.
 
 ## 5. Install Ollama
 
-Ollama runs the language model that produces natural chatbot answers. Download it from [ollama.com/download](https://ollama.com/download).
+Ollama runs the language model that produces natural chatbot answers.
 
 ### macOS
 
-You can install Ollama from Terminal with Homebrew:
+Install Ollama from Terminal:
 
 ```bash
-brew install ollama
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-Start it as a background service:
-
-```bash
-brew services start ollama
-```
-
-If Homebrew is not installed, use the installer from the Ollama download page instead: download Ollama for macOS, open the downloaded file, install it, and open the Ollama application.
+Or [download manually](https://ollama.com/download/Ollama.dmg).
 
 Verify the installation:
 
@@ -106,21 +100,15 @@ ollama --version
 
 ### Windows
 
-You can install Ollama directly from PowerShell with Ollama's official installation script:
+Install Ollama from PowerShell:
 
 ```powershell
 irm https://ollama.com/install.ps1 | iex
 ```
 
-Alternatively, use Windows Package Manager:
+Or [download manually](https://ollama.com/download/OllamaSetup.exe).
 
-```powershell
-winget install --id Ollama.Ollama -e
-```
-
-If neither terminal method is available, download Ollama for Windows from the Ollama download page and run the installer.
-
-After installation, start Ollama if it is not already running. Open a new PowerShell window and verify it:
+Verify the installation:
 
 ```powershell
 ollama --version
