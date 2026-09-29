@@ -69,4 +69,52 @@ BM25 is the Walert-style lexical baseline. TF-IDF supplies another independently
 - Retrieval metrics alone do not prove answer correctness; conduct human review.
 - Do not send personal, health, financial, or visa data to remote models.
 - Keep citations visible and abstain when evidence is insufficient.
-# scholarship_rag
+
+## LangSmith tracing and evaluation
+
+LangSmith is optional: the terminal application and local evaluation continue to
+work without an account. To record retrieval traces and run a hosted experiment,
+create a LangSmith API key and set these environment variables.
+
+macOS/Linux:
+
+```bash
+export LANGSMITH_TRACING=true
+export LANGSMITH_API_KEY="your-api-key"
+export LANGSMITH_PROJECT="scholarship-rag"
+```
+
+Windows Command Prompt:
+
+```cmd
+set LANGSMITH_TRACING=true
+set LANGSMITH_API_KEY=your-api-key
+set LANGSMITH_PROJECT=scholarship-rag
+```
+
+Questions submitted through the browser are traced when tracing is enabled. Run
+the labelled dataset as one LangSmith experiment with:
+
+```bash
+.venv/bin/python langsmith_evaluate.py --experiment scholarship-evaluation
+```
+
+To generate the same complete local audit without uploading anything:
+
+```bash
+.venv/bin/python langsmith_evaluate.py --local-only --experiment scholarship-evaluation
+```
+
+The experiment reports Hit@1, Hit@3, and reciprocal rank for both BM25 and
+TF-IDF. Only answerable cases are included because retrieval accuracy requires a
+known correct document section. Before uploading, the script calculates every
+score locally and saves complete detail and summary files under
+`evaluation/results/`. It then uploads sequentially, waits for evaluation to
+finish, and flushes pending LangSmith data. The remote dataset name includes a
+fingerprint of the questions and labels, preventing an older dataset from being
+silently reused after the test cases change.
+
+The API key belongs only in your environment;
+never add it to the repository. Traced questions and retrieved results are sent
+to LangSmith, so do not enter confidential student information while tracing is
+enabled.

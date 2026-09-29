@@ -1,2 +1,2 @@
 pypdf==6.0.0
-
+langsmith>=0.4,<1

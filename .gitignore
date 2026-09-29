@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 .DS_Store
+.env*
+!.env.example
 
 # Docker/Makefile not currently used - kept locally, not tracked
 Dockerfile

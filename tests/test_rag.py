@@ -5,6 +5,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from rag import Chunk, HybridRetriever, ScholarshipRAG, clean_page_text, tokenize
+from langsmith_evaluate import dataset_name_for, make_evaluator, retrieve_outputs, score_outputs
 
 
 class RAGTests(unittest.TestCase):
@@ -14,7 +15,6 @@ class RAGTests(unittest.TestCase):
             Chunk("P002-C002", 2, "8.131", "WIL Grant", "If you do not undertake your WIL placement, you need to return the grant funds to RMIT."),
             Chunk("P003-C003", 3, "3", "Communication", "Scholarship correspondence is sent to the RMIT student email account."),
         ]
-
     def test_tokenizer(self):
         self.assertEqual(tokenize("What is the WIL Grant?"), ["wil", "grant"])
 
@@ -39,6 +39,20 @@ class RAGTests(unittest.TestCase):
     def test_sources_do_not_mix_sections(self):
         result = ScholarshipRAG(self.chunks).ask("What happens to the WIL Grant if I do not undertake placement?", use_ollama=False)
         self.assertEqual({source["section"] for source in result["sources"]}, {"8.131"})
+
+    def test_langsmith_retrieval_metrics(self):
+        outputs = retrieve_outputs(HybridRetriever(self.chunks), "return WIL grant funds")
+        reference = {"sections": ["8.131"]}
+        self.assertEqual(make_evaluator("bm25", "hit_at_1")(outputs, reference)["score"], 1)
+        self.assertEqual(make_evaluator("tfidf", "hit_at_3")(outputs, reference)["score"], 1)
+        scores = score_outputs(outputs, reference)
+        self.assertEqual(scores["bm25_rank"], 1)
+        self.assertEqual(scores["tfidf_hit_at_1"], 1)
+
+    def test_langsmith_dataset_name_changes_with_content(self):
+        first = dataset_name_for([{"id": "Q1", "question": "One", "sections": ["1"]}])
+        second = dataset_name_for([{"id": "Q1", "question": "Two", "sections": ["1"]}])
+        self.assertNotEqual(first, second)
 
 
 if __name__ == "__main__":

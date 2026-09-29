@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from langsmith_support import trace_answer
 from rag import ScholarshipRAG, ingest_pdf, load_chunks
 
 ROOT = Path(__file__).resolve().parent
@@ -68,7 +69,12 @@ class Handler(BaseHTTPRequestHandler):
             method = payload.get("method", "hybrid")
             if method not in {"bm25", "tfidf", "hybrid"}:
                 method = "hybrid"
-            self._json(self.engine.ask(question, method=method, use_ollama=bool(payload.get("use_ollama", True))))
+            self._json(trace_answer(
+                self.engine,
+                question,
+                method=method,
+                use_ollama=bool(payload.get("use_ollama", True)),
+            ))
         except (ValueError, json.JSONDecodeError) as exc:
             self._json({"error": str(exc)}, 400)
 
@@ -95,4 +101,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
